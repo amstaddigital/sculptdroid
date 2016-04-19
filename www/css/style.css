@@ -14,10 +14,197 @@ html, body{
   bottom: 0;
   height: 100%;
   width: 100%;
-  display: block;
-}
+  display: block; }
 
 #tablet-plugin {
   position: absolute;
   top: -1000px;
 }
+
+.skfb-uploader,
+.modal {
+  position: relative;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif; }
+.skfb-uploader h1,
+.modal h1 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  color: #ececec;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  padding-top: 5px; }
+.skfb-uploader label,
+.modal label {
+  color: #999;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  display: block; }
+.skfb-uploader > div,
+.modal > div {
+  font-size: 17px; }
+.skfb-uploader > div + div,
+.modal > div + div {
+  margin-top: 30px; }
+.skfb-uploader input[type='text'],
+.skfb-uploader textarea,
+.modal input[type='text'],
+.modal textarea {
+  background: #444;
+  display: block;
+  padding: 20px;
+  border-radius: 4px;
+  border: 0;
+  width: 100%;
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 17px; }
+.skfb-uploader input[type='text']:focus,
+.skfb-uploader textarea:focus,
+.modal input[type='text']:focus,
+.modal textarea:focus {
+  background: #777777;
+  outline: 0; }
+.skfb-uploader textarea,
+.modal textarea {
+  height: 113px;
+  font-family: 'Open Sans', sans-serif; }
+.skfb-uploader .btn,
+.modal .btn {
+  width: 100%;
+  background: #1caad9;
+  padding: 0 20px;
+  line-height: 60px;
+  margin-top: 30px;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 2px;
+  -webkit-transition: 0.15s background ease;
+  -ms-transition: 0.15s background ease;
+  -moz-transition: 0.15s background ease;
+  -o-transition: 0.15s background ease;
+  transition: 0.15s background ease; }
+.skfb-uploader .btn:hover,
+.modal .btn:hover {
+  background: #1998c2; }
+.skfb-uploader .btn .spinner,
+.modal .btn .spinner {
+  display: inline-block;
+  background: url('../ressources/spinner.gif');
+  height: 24px;
+  width: 24px;
+  position: relative;
+  top: 5px;
+  margin-right: 5px; }
+.skfb-uploader .btn.uploading,
+.modal .btn.uploading {
+  -webkit-transition: none;
+  -ms-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none; }
+.skfb-uploader .btn.uploading:hover,
+.modal .btn.uploading:hover {
+  background: #1caad9; }
+.skfb-uploader .cancel,
+.modal .cancel {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #777;
+  text-decoration: none;
+  border: 2px solid #777;
+  border-radius: 40px;
+  width: 20px;
+  height: 20px;
+  display: block;
+  line-height: 19px;
+  text-align: center; }
+.skfb-uploader .cancel:hover,
+.modal .cancel:hover {
+  color: #999;
+  border-color: #999; }
+.skfb-uploader p.success,
+.modal p.success {
+  color: #ececec; }
+.skfb-uploader input[readonly],
+.modal input[readonly] {
+  background: none;
+  border: 1px solid #444444; }
+.skfb-uploader input[readonly]:focus,
+.modal input[readonly]:focus {
+  background: none; }
+.skfb-uploader #login-status,
+.modal #login-status {
+  height: 40px;
+  color: #ececec;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 20px; }
+.skfb-uploader #login-status a,
+.modal #login-status a {
+  color: #1caad9;
+  text-decoration: none; }
+.skfb-uploader #login-status a:hover,
+.modal #login-status a:hover {
+  color: #2bb6e4; }
+
+.modal {
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -o-transform: scale(0.9);
+  transform: scale(0.9);
+  -webkit-transition: 0.2s all ease;
+  -ms-transition: 0.2s all ease;
+  -moz-transition: 0.2s all ease;
+  -o-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 15px 30px;
+  background-color: #222;
+  color: #ececec; }
+.modal.visible {
+  pointer-events: auto;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1); }
+.modal p a {
+  color: #1caad9;
+  text-decoration: none; }
+.modal .cancel:hover {
+  cursor: pointer; }
+
+#about-popup {
+  width: 440px;
+  height: 300px;
+  margin-left: -235px;
+  margin-top: -165px; }
+
+#about-popup p {
+  font-size: 15px;
+  line-height: 24px; }
+
+#about-popup > p + p {
+  margin-top: 30px; }

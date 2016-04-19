@@ -306,9 +306,9 @@ Import.initMeshArrays = function (mesh, vAr, iAr, cAr)
     for (var i = 0; i < nbColors; ++i)
     {
       j = i * 3;
-      colorArray[j] = 1.0;
-      colorArray[j + 1] = 1.0;
-      colorArray[j + 2] = 1.0;
+      colorArray[j] = 0.53;
+      colorArray[j + 1] = 0.3;
+      colorArray[j + 2] = 0.3;
     }
   }
 };

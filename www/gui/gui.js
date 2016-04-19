@@ -87,8 +87,8 @@ Gui.prototype = {
   /** Initialize the general gui (on the left) */
   initGeneralGui: function (gui)
   {
-    var main = this.sculptgl_;
     var self = this;
+    var main = this.sculptgl_;
 
     //Pen tablet ui stuffs
     var foldPenTablet = gui.addFolder('Wacom tablet');
@@ -199,7 +199,6 @@ Gui.prototype = {
       self.ctrlRadius_.__li.hidden = tool === st.CUT;
       self.ctrlIntensity_.__li.hidden = self.ctrlContinuous_.__li.hidden;
       self.ctrlColor_.__li.hidden = tool !== st.COLOR;
-      self.ctrlCameraType_.__li.hidden = tool === st.CUT;
       self.ctrlCut_.__li.hidden = tool !== st.CUT;
       self.ctrlFillHoles_.__li.hidden = tool !== st.CUT;
       self.ctrlSubdDetailCut_.__li.hidden = tool !== st.CUT;
@@ -413,11 +412,12 @@ Gui.prototype = {
   {
     if (!this.sculptgl_.mesh_)
       return;
-    if (this.keySketchfab_ === '')
+    Export.exportSketchfab(this.sculptgl_.mesh_, [58, 224, 224]);
+
+    // Prevent shortcut keys from triggering in Sketchfab export
+    $('.skfb-uploader').on('keydown', function (e)
     {
-      alert('Please enter a sketchfab API Key.');
-      return;
-    }
-    Export.exportSketchfab(this.sculptgl_.mesh_, this.keySketchfab_);
+      e.stopPropagation();
+    });
   }
 };

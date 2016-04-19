@@ -84,7 +84,7 @@ SculptGL.prototype = {
     $( '#backgroundopen' ).change( function( event ) {
       self.loadBackground( event );
     } );
-    // mouse
+    /* mouse
     $canvas.mousedown( function( event ) {
       self.onMouseDown( event );
     } );
@@ -99,7 +99,7 @@ SculptGL.prototype = {
     } );
     $canvas.mouseout( function( event ) {
       self.onMouseOut( event );
-    } );
+    } );*/
 
     // multi touch
     $canvas.bind( 'touchstart', function( event ) {
@@ -133,6 +133,7 @@ SculptGL.prototype = {
     $( window.body ).bind( 'touchmove', function( event ) {
       event.preventDefault();
     } );
+
   },
 
   /** Load webgl context */
@@ -353,6 +354,8 @@ SculptGL.prototype = {
       case 83: // S
         this.camera_.moveZ_ = 1;
         break;
+      default:
+            console.log('Key : ' + key);
     }
     var self = this;
     if ( this.cameraTimer_ === -1 ) {

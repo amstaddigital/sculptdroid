@@ -1,11 +1,18 @@
 var Export = {};
 
 /** Export OBJ file */
-Export.exportOBJ = function (mesh)
+Export.exportOBJ = function (mesh, mtl_name)
 {
   var vAr = mesh.vertexArray_;
+  var cAr = mesh.colorArray_;
   var iAr = mesh.indexArray_;
   var data = 's 0\n';
+
+  if (mtl_name)
+  {
+    data += 'mtllib ' + mtl_name + '.mtl\n';
+    data += 'usemtl ' + mtl_name + '\n';
+  }
   var nbVertices = mesh.vertices_.length;
   var nbTriangles = mesh.triangles_.length;
   var scale = 1 / mesh.scale_;
@@ -14,7 +21,10 @@ Export.exportOBJ = function (mesh)
   for (i = 0; i < nbVertices; ++i)
   {
     j = i * 3;
-    data += 'v ' + vAr[j] * scale + ' ' + vAr[j + 1] * scale + ' ' + vAr[j + 2] * scale + '\n';
+    if(mtl_name)
+      data += 'v ' + vAr[j] * scale + ' ' + vAr[j + 1] * scale + ' ' + vAr[j + 2] * scale + ' ' + cAr[j] + ' ' + cAr[j + 1 ] + ' ' + cAr[j + 2] + '\n';
+    else
+      data += 'v ' + vAr[j] * scale + ' ' + vAr[j + 1] * scale + ' ' + vAr[j + 2] * scale + '\n';
   }
   for (i = 0; i < nbTriangles; ++i)
   {
@@ -34,7 +44,6 @@ Export.exportSTL = function (mesh)
 Export.exportAsciiSTL = function (mesh)
 {
   var vAr = mesh.vertexArray_;
-  var nAr = mesh.colorArray_;
   var iAr = mesh.indexArray_;
   var data = 'solid mesh\n';
   var triangles = mesh.triangles_;
@@ -47,7 +56,7 @@ Export.exportAsciiSTL = function (mesh)
     j = i * 3;
     var n = triangles[i].normal_;
     data += ' facet normal ' + n[0] + ' ' + n[1] + ' ' + n[2] + '\n';
-    data += '  outer loop\n'
+    data += '  outer loop\n';
     var iv1 = iAr[j] * 3,
       iv2 = iAr[j + 1] * 3,
       iv3 = iAr[j + 2] * 3;
@@ -102,58 +111,35 @@ Export.exportAsciiPLY = function (mesh)
   return data;
 };
 
-/** Export OBJ file to Verold */
-Export.exportVerold = function (mesh, key)
+Export.exportSpecularMtl = function ()
 {
-  var fd = new FormData();
-
-  fd.append('api_key', key);
-  var model = Export.exportOBJ(mesh);
-
-  fd.append('model', new Blob([model]), 'model.obj');
-  fd.append('title', 'Model');
-  fd.append('description', 'Imported from SculptGL.');
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://studio.verold.com/projects.json');
-
-  var result = function ()
-  {
-    var res = JSON.parse(xhr.responseText);
-    console.log(res);
-    if (res.errors)
-      alert('Verold upload error :\n' + res.errors[0]);
-    else
-      alert('Upload success !');
-  };
-  xhr.addEventListener('load', result, true);
-  xhr.send(fd);
+    var data = 'newmtl specular\n';
+    data += 'Ks 1.0 1.0 1.0\n';
+    data += 'Ns 200.0\n';
+    data += 'd 1.0\n'; // no transparency
+    return data;
 };
 
 /** Export OBJ file to Sketchfab */
-Export.exportSketchfab = function (mesh, key)
+Export.exportSketchfab = function (mesh)
 {
-  var fd = new FormData();
-
-  fd.append('token', key);
-  var model = Export.exportOBJ(mesh);
-
-  fd.append('modelFile', new Blob([model]));
-  fd.append('name', 'model.obj');
-  fd.append('isPublished', false);
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.sketchfab.com/v2/models');
-
-  var result = function ()
+  // create a zip containing the .obj model
+  var model = Export.exportOBJ(mesh, 'specular');
+  var mtl = Export.exportSpecularMtl();
+  var zip = new JSZip();
+  zip.file('model.obj', model);
+  zip.file('specular.mtl', mtl);
+  var blob = zip.generate(
   {
-    var res = JSON.parse(xhr.responseText);
-    console.log(res);
-    if (!res.success)
-      alert('Sketchfab upload error :\n' + res.error);
-    else
-      alert('Upload success !');
+    type: 'blob',
+    compression: 'DEFLATE'
+  });
+
+  var options = {
+    'fileModel': blob,
+    'filenameModel': 'model.zip',
+    'title': ''
   };
-  xhr.addEventListener('load', result, true);
-  xhr.send(fd);
+
+  Sketchfab.showUploader(options);
 };
