@@ -102,7 +102,7 @@ SculptGL.prototype = {
     } );*/
 
     // multi touch
-    $canvas.bind( 'touchstart', function( event ) {
+   $canvas.bind( 'touchstart', function( event ) {
       self.onTouchStart( event );
     } );
     $canvas.bind( 'touchend', function( event ) {
@@ -542,7 +542,7 @@ SculptGL.prototype = {
     var pressureIntensity = this.usePenIntensity_ ? pressure : 1.0;
     var button = touches.length;
     if ( button === 1 ) {
-      if ( this.mesh_ ) {
+      if ( this.mesh_ && this.picking_.mesh_ ) {
         this.sumDisplacement_ = 0;
         this.states_.start();
         if ( this.sculpt_.tool_ === Sculpt.tool.CUT )

@@ -137,7 +137,7 @@ Gui.prototype = {
       main.camera_.updateProjection();
       main.render();
     });
-    this.ctrlFov_ = cameraFold.add(main.camera_, 'fov_', 10, 80).name('Fov');
+    this.ctrlFov_ = cameraFold.add(main.camera_, 'fov_', 10, 150).name('Fov');
     this.ctrlFov_.onChange(function (value)
     {
       main.camera_.updateProjection();
