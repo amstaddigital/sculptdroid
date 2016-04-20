@@ -110,7 +110,7 @@ Gui.prototype = {
 
     //Sketchfab fold
     var foldSketchfab = gui.addFolder('Go to Sketchfab !');
-    foldSketchfab.add(this, 'keySketchfab_').name('API key');
+    //foldSketchfab.add(this, 'keySketchfab_').name('API key');
     foldSketchfab.add(this, 'exportSketchfab_').name('Upload');
 
     //Camera fold
