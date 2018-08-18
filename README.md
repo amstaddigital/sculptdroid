@@ -1,10 +1,9 @@
 # Sculptdroid 2
 
-Original Author
-[Website](http://stephaneginier.com/)
 
-SculptDroid Version
-[Website](https://www,amstaddigital.com)
+[Original Author](http://stephaneginier.com/)
+
+[SculptDroid Version](http://www,amstaddigital.com)
 
 
 
