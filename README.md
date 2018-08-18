@@ -3,7 +3,7 @@
 
 [Original Author](http://stephaneginier.com/)
 
-[SculptDroid Version](http://www,amstaddigital.com)
+[SculptDroid Version](https://www.amstaddigital.com/)
 
 
 
