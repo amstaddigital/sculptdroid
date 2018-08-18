@@ -1,3 +1,3 @@
 # Sculptdroid 2
 
-An android sculpting app initially based on SculptGL. It is currently being rewritten using BabylonJS for performance improvements.
+An android sculpting app initially based on SculptGL. The updating and refactoring process will be slow to ensure proper structure.
