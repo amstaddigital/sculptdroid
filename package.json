@@ -1,0 +1,19 @@
+{
+  "name": "com.ad.ef.sculptdroid",
+  "version": "0.0.5",
+  "displayName": "SkulptDroid",
+  "cordova": {
+    "platforms": [
+      "windows",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    }
+  },
+  "dependencies": {
+    "cordova-windows": "~5.0.0",
+    "cordova-plugin-whitelist": "1",
+    "cordova-android": "~7.0.0"
+  }
+}

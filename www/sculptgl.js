@@ -187,13 +187,13 @@ SculptGL.prototype = {
           self.loadSphere();
       };
     };
-    loadTex( 'ressources/clay.jpg', Shader.mode.MATERIAL );
-    loadTex( 'ressources/chavant.jpg', Shader.mode.MATERIAL + 1 );
-    loadTex( 'ressources/skin.jpg', Shader.mode.MATERIAL + 2 );
-    loadTex( 'ressources/drink.jpg', Shader.mode.MATERIAL + 3 );
-    loadTex( 'ressources/redvelvet.jpg', Shader.mode.MATERIAL + 4 );
-    loadTex( 'ressources/orange.jpg', Shader.mode.MATERIAL + 5 );
-    loadTex( 'ressources/bronze.jpg', Shader.mode.MATERIAL + 6 );
+    loadTex( 'resources/clay.jpg', Shader.mode.MATERIAL );
+    loadTex( 'resources/chavant.jpg', Shader.mode.MATERIAL + 1 );
+    loadTex( 'resources/skin.jpg', Shader.mode.MATERIAL + 2 );
+    loadTex( 'resources/drink.jpg', Shader.mode.MATERIAL + 3 );
+    loadTex( 'resources/redvelvet.jpg', Shader.mode.MATERIAL + 4 );
+    loadTex( 'resources/orange.jpg', Shader.mode.MATERIAL + 5 );
+    loadTex( 'resources/bronze.jpg', Shader.mode.MATERIAL + 6 );
   },
 
   /** Load shaders as a string */
@@ -222,7 +222,7 @@ SculptGL.prototype = {
   /** Load the sphere */
   loadSphere: function() {
     var sphereXhr = new XMLHttpRequest();
-    sphereXhr.open( 'GET', 'ressources/sphere.obj', true );
+    sphereXhr.open( 'GET', 'resources/sphere.obj', true );
     var self = this;
     sphereXhr.onload = function() {
       self.sphere_ = this.responseText;

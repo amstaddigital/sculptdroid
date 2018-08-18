@@ -30,4 +30,6 @@
     <preference name="xwalkMultipleApk" value="true" />
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="landscape" />
+    <engine name="windows" spec="~5.0.0" />
+    <engine name="android" spec="~7.0.0" />
 </widget>
