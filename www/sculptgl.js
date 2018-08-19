@@ -6,7 +6,7 @@
     window.requestAnimationFrame = window[ vendors[ x ] + 'RequestAnimationFrame' ];
   }
   if ( !window.requestAnimationFrame )
-    alert( 'browser is too old. Probably no webgl there anyway' );
+    alert( 'Please update your browser or device to one that supports WebGL' );
 }() );
 
 function SculptGL() {
@@ -84,7 +84,8 @@ SculptGL.prototype = {
     $( '#backgroundopen' ).change( function( event ) {
       self.loadBackground( event );
     } );
-    /* mouse
+    $('body').on('contextmenu', '#canvas', function(e){ return false; });
+    /* mouse*/
     $canvas.mousedown( function( event ) {
       self.onMouseDown( event );
     } );
@@ -99,7 +100,7 @@ SculptGL.prototype = {
     } );
     $canvas.mouseout( function( event ) {
       self.onMouseOut( event );
-    } );*/
+    } );
 
     // multi touch
    $canvas.bind( 'touchstart', function( event ) {
@@ -198,25 +199,21 @@ SculptGL.prototype = {
 
   /** Load shaders as a string */
   loadShaders: function() {
-    var xhrShader = function( path ) {
-      var shaderXhr = new XMLHttpRequest();
-      shaderXhr.open( 'GET', path, false );
-      shaderXhr.send( null );
-      return shaderXhr.responseText;
-    };
     var shaders = this.shaders_;
-    shaders.phongVertex = xhrShader( 'shaders/phong.vert' );
-    shaders.phongFragment = xhrShader( 'shaders/phong.frag' );
-    shaders.transparencyVertex = xhrShader( 'shaders/transparency.vert' );
-    shaders.transparencyFragment = xhrShader( 'shaders/transparency.frag' );
-    shaders.wireframeVertex = xhrShader( 'shaders/wireframe.vert' );
-    shaders.wireframeFragment = xhrShader( 'shaders/wireframe.frag' );
-    shaders.normalVertex = xhrShader( 'shaders/normal.vert' );
-    shaders.normalFragment = xhrShader( 'shaders/normal.frag' );
-    shaders.reflectionVertex = xhrShader( 'shaders/reflection.vert' );
-    shaders.reflectionFragment = xhrShader( 'shaders/reflection.frag' );
-    shaders.backgroundVertex = xhrShader( 'shaders/background.vert' );
-    shaders.backgroundFragment = xhrShader( 'shaders/background.frag' );
+    let shaderLib = new ShaderLib();
+    
+    shaders.phongVertex = shaderLib.phongVertex();
+    shaders.phongFragment = shaderLib.phongFragment();
+    shaders.transparencyVertex = shaderLib.transparencyVertex();
+    shaders.transparencyFragment = shaderLib.transparencyFragment();
+    shaders.wireframeVertex = shaderLib.wireframeVertex();
+    shaders.wireframeFragment = shaderLib.wireframeFragment();
+    shaders.normalVertex = shaderLib.normalVertex();
+    shaders.normalFragment = shaderLib.normalFragment();
+    shaders.reflectionVertex = shaderLib.reflectionVertex();
+    shaders.reflectionFragment = shaderLib.reflectionFragment();
+    shaders.backgroundVertex = shaderLib.backgroundVertex();
+    shaders.backgroundFragment = shaderLib.backgroundFragment();
   },
 
   /** Load the sphere */
