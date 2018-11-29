@@ -35,6 +35,12 @@ public class Sculptdroid extends ApplicationAdapter {
 	public void render () {
 
 
+		// DEBUG ONLY
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			Gdx.app.log("Profile", "Profiling method");
+		}
+
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -42,11 +48,6 @@ public class Sculptdroid extends ApplicationAdapter {
 		font.draw(batch, "Hello World!", 150, 150);
 		batch.end();
 
-
-		// DEBUG ONLY
-		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-			Gdx.app.log("Profile", "Profiling method");
-		}
 
 	}
 

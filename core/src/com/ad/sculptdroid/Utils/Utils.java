@@ -1,9 +1,8 @@
 package com.ad.sculptdroid.Utils;
 
-
+import com.badlogic.gdx.math.Vector3;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -45,6 +44,7 @@ public class Utils {
     public double linearToSRGB1(double x) {
         return x < 0.0031308 ?  x * 12.92 : 1.055 * Math.pow(x, 1.0 / 2.4) - 0.055;
     }
+
 
     /**
      * Color Conversion from sRGB to Linear
@@ -127,6 +127,28 @@ public class Utils {
         return arr1;
     }
 
+    public ArrayList<Double> vector3ToSRGB(Vector3 V3) {
+        ArrayList<Double> result = new ArrayList<Double>();
+
+        result.add(linearToSRGB1(V3.x));
+        //noinspection SuspiciousNameCombination
+        result.add(linearToSRGB1(V3.y));
+        result.add(linearToSRGB1(V3.z));
+
+        return result;
+    }
+
+    public ArrayList<Double> vector3ToLinear(Vector3 V3) {
+        ArrayList<Double> result = new ArrayList<Double>();
+
+        result.add(sRGBToLinear1(V3.x));
+        //noinspection SuspiciousNameCombination
+        result.add(sRGBToLinear1(V3.y));
+        result.add(sRGBToLinear1(V3.z));
+
+        return result;
+    }
+
 
     /*
         TODO: Unconverted methods
@@ -146,33 +168,24 @@ public class Utils {
             inv[obj[keys[i]]] = keys[i];
           return inv;
         };
+        Utils.computeWorldVertices = function (mesh, arrayOut) {
+          var nbVertices = mesh.getNbVertices();
+          var array = mesh.getVertices().subarray(0, nbVertices * 3);
+          if (!arrayOut) arrayOut = new Float32Array(nbVertices * 3);
 
-        Utils.replaceElement = function (array, oldValue, newValue) {
-          for (var i = 0, l = array.length; i < l; ++i) {
-            if (array[i] === oldValue) {
-              array[i] = newValue;
-              return;
-            }
+          var matrix = mesh.getMatrix();
+          var tmp = vec3.create();
+          for (var i = 0; i < nbVertices; ++i) {
+            var id = i * 3;
+            vec3.set(tmp, array[id], array[id + 1], array[id + 2]);
+            vec3.transformMat4(tmp, tmp, matrix);
+            arrayOut[id] = tmp[0];
+            arrayOut[id + 1] = tmp[1];
+            arrayOut[id + 2] = tmp[2];
           }
+          return arrayOut;
         };
 
-        Utils.removeElement = function (array, remValue) {
-          for (var i = 0, l = array.length; i < l; ++i) {
-            if (array[i] === remValue) {
-              array[i] = array[l - 1];
-              array.pop();
-              return;
-            }
-          }
-        };
-
-        Utils.appendArray = function (array1, array2) {
-          var nb1 = array1.length;
-          var nb2 = array2.length;
-          array1.length += nb2;
-          for (var i = 0; i < nb2; ++i)
-            array1[nb1 + i] = array2[i];
-        };
 
      */
 
