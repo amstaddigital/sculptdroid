@@ -1,21 +1,12 @@
 Tools
 =====
 
-Nodejs needs to be installed [nodejs](http://nodejs.org/).
+This is a complete rewrite of sculptdroid using Java and libGDX. There were performance issues and
+strange hiccups that were a result of the Javascript compilation to mobile.
 
-Then for the browser build :
-```
-yarn # npm install
-yarn dev # npm run dev
-// visit app/index.html
-```
 
-For standalone :
-```
-yarn add electron
-yarn add electron-packager
-yarn standalone
-```
 
 Credits
 =======
+
+James Lennon
