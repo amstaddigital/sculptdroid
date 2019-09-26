@@ -1,10 +1,19 @@
 About
 =====
 
-This is a complete rewrite of sculptdroid using Java and libGDX. There were performance issues and
-strange hiccups that were a result of the Javascript compilation to mobile.
+This is a complete rewrite of Sculptdroid using Unreal Engine 4. There were performance issues and
+strange hiccups as a result of Javascript compilation for mobile. The original Javascript source code is still in another branch but once features have eventually caught up, this will overwrite the master.
 
-This is primarily being developed in Android Studio but it should work with any Java IDE.
+
+Building
+=====
+### Requirements
+- Unreal Engine 4.23
+- Visual Studio 2017 (or platform respective C++ compiler/IDE)
+
+### Optional
+- Android build capability ([UE4 Docs](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/GettingStarted/index.html))
+
 
 
 Credits
