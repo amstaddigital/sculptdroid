@@ -12,22 +12,22 @@ struct FProcMeshData
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<FVector> Vertices;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<int32> Triangles;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<FVector2D> UVs;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<FVector> NormalsArray;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<FProcMeshTangent> Tangents;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+	UPROPERTY(EditAnywhere, Category = "Procedural Mesh Data")
 		TArray<FLinearColor> VertexColors;
 
 	FProcMeshData() {}

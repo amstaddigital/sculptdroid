@@ -36,18 +36,19 @@ void ASculptedObject::PostLoad()
 	CreateMesh();
 }
 
-
+#if WITH_EDITOR
 void ASculptedObject::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
-	if (ReGen)
+	if (bRegenerateMesh)
 	{
-		ReGen = false;
+		bRegenerateMesh = false;
 		CreateMesh();
 	}
 
 }
+#endif
 
 // Called every frame
 void ASculptedObject::Tick(float DeltaTime)

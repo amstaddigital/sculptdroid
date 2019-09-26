@@ -112,10 +112,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "CLionSourceCodeAccess",
-			"Enabled": false
-		},
-		{
 			"Name": "CodeLiteSourceCodeAccess",
 			"Enabled": false
 		},
@@ -146,12 +142,23 @@
 		{
 			"Name": "VariantManagerContent",
 			"Enabled": false
+		},
+		{
+			"Name": "AndroidMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "AvfMedia",
+			"Enabled": false
+		},
+		{
+			"Name": "WmfMedia",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
 		"Android",
 		"AllDesktop",
-		"HTML5",
 		"IOS",
 		"LinuxNoEditor",
 		"MacNoEditor",

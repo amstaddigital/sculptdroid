@@ -35,7 +35,7 @@ public:
 		int32 SegmentLon = 11;
 
 	UPROPERTY(EditAnywhere)
-		bool ReGen = false;
+		bool bRegenerateMesh = false;
 
 
 
@@ -57,9 +57,10 @@ protected:
 	// When the scene is loaded (already in the map)
 	virtual void PostLoad() override;
 
+#if WITH_EDITOR
 	//Update the mesh when the regen box is checked
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
-
+#endif
 
 	UFUNCTION()
 		bool IsInBrushRange(FVector PointLocation, FVector CenterPoint, float BrushRange);
