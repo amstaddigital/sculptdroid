@@ -3,53 +3,51 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ProceduralMeshComponent.h"
 #include "Structs.generated.h"
 
 
 USTRUCT(BlueprintType)
-struct FAABB
+struct FProcMeshData
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(BlueprintReadWrite, Category = "AABB")
-		FVector Min;
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<FVector> Vertices;
 
-	UPROPERTY(BlueprintReadWrite, Category = "AABB")
-		FVector Max;
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<int32> Triangles;
 
-	UPROPERTY(BlueprintReadWrite, Category = "AABB")
-		FVector Center;
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<FVector2D> UVs;
 
-	FAABB()
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<FVector> NormalsArray;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<FProcMeshTangent> Tangents;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Procedural Mesh Data")
+		TArray<FLinearColor> VertexColors;
+
+	FProcMeshData() {}
+
+	void AddTriangle(int32 A, int32 B, int32 C)
 	{
-		Min = FVector(INFINITY, INFINITY, INFINITY);
-		Max = FVector(-INFINITY, -INFINITY, -INFINITY);
-		Center = FVector::ZeroVector;
+		Triangles.Add(A);
+		Triangles.Add(C);
+		Triangles.Add(B);
 	}
 
-	// Returns a clone to store in a new AABB
-	FAABB Clone()
+	void AddQuad(int32 A, int32 B, int32 C, int32 D)
 	{
-		FAABB NewAABB = FAABB();
-		NewAABB.Min = Min;
-		NewAABB.Max = Max;
-		NewAABB.Center = Center;
-		return NewAABB;
-	}
+		Triangles.Add(A);
+		Triangles.Add(C);
+		Triangles.Add(B);
 
-	// Set this to argument
-	void Copy(FAABB InAABB)
-	{
-		Min = InAABB.Min;
-		Max = InAABB.Max;
+		Triangles.Add(A);
+		Triangles.Add(D);
+		Triangles.Add(C);
 	}
-
-	// This had two versions one of a Vec3 and one with all floats to the arguments which is redundant in C++
-	void Set(FVector NewMin, FVector NewMax)
-	{
-		Min = NewMin;
-		Max = NewMax;
-	}
-
 
 };

@@ -81,7 +81,7 @@ void ASculptedObject::CreateMesh()
 			float y = CosPol;
 			float z = SinPol * SinAz;
 
-			FVector NewVertex = FVector(x, y, z) * Radius;
+			FVector NewVertex = FVector(x, y, z) * SphereRadius;
 			Vertices.Add(NewVertex);
 
 			//UE_LOG(LogTemp, Warning, TEXT("%d: Adding %s"), Index, *NewVertex.ToString());

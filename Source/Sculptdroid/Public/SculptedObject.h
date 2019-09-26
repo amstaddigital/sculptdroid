@@ -26,7 +26,7 @@ public:
 		UProceduralMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
-		float Radius = 100.0f;
+		float SphereRadius = 100.0f;
 
 	UPROPERTY(EditAnywhere)
 		int32 SegmentLat = 22;
